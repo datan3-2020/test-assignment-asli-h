@@ -1,7 +1,7 @@
 ---
 title: "Test statistical assignment"
-author: "Alexey Bessudnov"
-date: "22 January 2020"
+author: "Asli Hasanli"
+date: "26 January 2020"
 output: github_document
 ---
 
@@ -25,7 +25,8 @@ First, we need to read the data into R. For this assignment, I ask you to use da
 ```{r}
 library(tidyverse)
 # This attaches the tidyverse package. If you get an error here you need to install the package first. 
-Data <- read_tsv("")
+data <- read_tsv("/Users/asli/Test Assignment/data/i_youth.tab")
+
 # You need to add between the quotation marks a full path to the required file on your computer.
 ```
 
@@ -37,6 +38,9 @@ Tabulate three variables: children's gender, age (please use derived variables) 
 
 ```{r}
 # add your code here
+table(data$i_dvage)
+table(data$i_sex_dv) 
+table(data$i_ypsocweb)
 
 ```
 
@@ -46,6 +50,16 @@ We want to create a new binary variable for having an account on social media so
 
 ```{r}
 # add your code here
+
+data$socialmedia <- NA
+data$socialmedia[data$i_ypsocweb==1] <- "Yes"
+data$socialmedia[data$i_ypsocweb==2] <- "No"
+data$socialmedia[data$i_ypsocweb==-9] <- NA
+table(data$socialmedia)
+
+data$gender <- ifelse(data$i_sex_dv==1, "Male", "Female")
+table(data$gender)
+
 ```
 
 ## Calculate means (10 points)
@@ -54,6 +68,8 @@ Produce code that calculates probabilities of having an account on social media 
 
 ```{r}
 # add your code here
+
+
 ```
 
 ## Write short interpretation (10 points)
